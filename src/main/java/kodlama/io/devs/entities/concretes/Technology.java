@@ -1,19 +1,17 @@
 package kodlama.io.devs.entities.concretes;
 
-import kodlama.io.devs.entities.abstracts.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
+@Entity
 @Data
-@javax.persistence.Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="programming_languages")
-public class ProgrammingLanguage implements Entity {
+@Table(name = "technologies")
+public class Technology implements kodlama.io.devs.entities.abstracts.Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +21,7 @@ public class ProgrammingLanguage implements Entity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "programmingLanguage")
-    private List<Technology> technologies;
-
-
+    @ManyToOne
+    @JoinColumn(name = "programmingLanguage_id")
+    private ProgrammingLanguage programmingLanguage;
 }
